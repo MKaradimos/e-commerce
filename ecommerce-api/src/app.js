@@ -11,7 +11,12 @@ export const buildApp = () => {
   const app = express();
 
   app.use(helmet());
-  app.use(cors());
+  app.use(
+    cors({
+      origin: process.env.CORS_ORIGIN || "http://localhost:5173",
+      credentials: true,
+    })
+  );
   app.use(express.json());
   if (process.env.NODE_ENV !== "test") app.use(morgan("dev"));
 

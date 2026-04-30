@@ -47,10 +47,14 @@ export const updateItem = async (userId, productId, quantity) => {
   if (!product) throw new ApiError(404, "Product not found");
   if (product.stock < quantity) throw new ApiError(400, "Insufficient stock");
 
-  await prisma.cartItem.update({
-    where: { cartId_productId: { cartId: cart.id, productId } },
-    data: { quantity },
-  });
+  await prisma.cartItem
+    .update({
+      where: { cartId_productId: { cartId: cart.id, productId } },
+      data: { quantity },
+    })
+    .catch(() => {
+      throw new ApiError(404, "Cart item not found");
+    });
   return getCart(userId);
 };
 

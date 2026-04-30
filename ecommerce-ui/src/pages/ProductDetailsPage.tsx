@@ -4,7 +4,6 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, ShoppingCart, Package, Minus, Plus } from "lucide-react";
 import { cartApi, productsApi } from "@/api/endpoints";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useAuthStore } from "@/store/auth";
 import { formatPrice } from "@/lib/utils";
