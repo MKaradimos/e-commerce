@@ -21,12 +21,14 @@ export function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<Layout />}>
-            <Route index element={<ProductsPage />} />
-            <Route path="products/:id" element={<ProductDetailsPage />} />
+            {/* Public routes — login & register */}
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
 
+            {/* All other routes require login */}
             <Route element={<ProtectedRoute />}>
+              <Route index element={<ProductsPage />} />
+              <Route path="products/:id" element={<ProductDetailsPage />} />
               <Route path="cart" element={<CartPage />} />
               <Route path="checkout/:orderId" element={<CheckoutPage />} />
             </Route>

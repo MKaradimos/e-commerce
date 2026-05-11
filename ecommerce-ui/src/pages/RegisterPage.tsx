@@ -15,7 +15,12 @@ import {
 
 export function RegisterPage() {
   const navigate = useNavigate();
-  const setAuth = useAuthStore((s) => s.setAuth);
+  const { user, setAuth } = useAuthStore();
+
+  if (user) {
+    navigate("/", { replace: true });
+    return null;
+  }
   const [form, setForm] = useState({
     email: "",
     password: "",

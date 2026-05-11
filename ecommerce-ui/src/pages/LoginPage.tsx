@@ -10,7 +10,12 @@ import { Zap } from "lucide-react";
 
 export function LoginPage() {
   const navigate = useNavigate();
-  const setAuth = useAuthStore((s) => s.setAuth);
+  const { user, setAuth } = useAuthStore();
+
+  if (user) {
+    navigate("/", { replace: true });
+    return null;
+  }
   const [email, setEmail] = useState("customer@shop.com");
   const [password, setPassword] = useState("Password123!");
   const [loading, setLoading] = useState(false);
